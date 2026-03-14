@@ -29,8 +29,6 @@ initial begin
 
        
         #15;
-
-        // --- WRITE PHASE ---
        
         
         @(negedge clk);
@@ -49,20 +47,16 @@ initial begin
         @(negedge clk);
         write_en = 0;          // Turn off writing
 
-        // --- READ PHASE ---
-      
-
-        
+     
         #10 read_addr = 8'd10;  // Should output DE
         #10 read_addr = 8'd100; // Should output AD
         #10 read_addr = 8'd255; // Should output BE
         #10 read_addr = 8'd50;  // Uninitialized memory (will output XX)
 
-        // End the simulation
+      
         #20 $finish;
     end
 
-    // 5. Monitor the outputs in the console
     initial begin
         $monitor("Time: %0t | Write_En: %b | W_Addr: %3d | Data_In: %h || R_Addr: %3d | Data_Out: %h", 
                  $time, write_en, write_addr, data_in, read_addr, data_out);
