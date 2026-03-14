@@ -62,7 +62,7 @@ module writeback_tb();
         $finish;
     end
 
-    // 4. Monitor the outputs in the console
+
     initial begin
         $monitor("Time: %0t | Opcode: %b | Reg_Addr: %2d (Hex: %h) | Mem_Addr: %h | Data_Out: %h", 
                  $time, instruction[31:26], reg_addr_out, reg_addr_out, mem_addr_out, data_out);
