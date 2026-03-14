@@ -57,13 +57,12 @@ initial begin
         instruction = 32'hFC000154;
         
         // EXPECTED: reg_addr1 = 10, reg_addr2 = 20, A = 00, B = 00 
-        // (Because your 'else' block catches it!)
+  
 
         #20;
         $finish;
     end
 
-    // 4. Monitor the outputs in the console
     initial begin
         $monitor("Time: %0t | Opcode: %b | Addr1 (Rsrc2): %2d | Addr2 (Rsrc1): %2d | A: %h | B: %h", 
                  $time, instruction[31:26], reg_addr1, reg_addr2, A, B);
