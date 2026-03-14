@@ -46,17 +46,16 @@ initial begin
         @(negedge clk);
         load_en = 0;             // Stop loading
 
-        // Now let's read them back asynchronously
         #10 read_addr = 6'd0; // Should output A1A1A1A1
         #10 read_addr = 6'd1; // Should output B2B2B2B2
         #10 read_addr = 6'd2; // Should output C3C3C3C3
         #10 read_addr = 6'd5; // Uninitialized memory (likely outputs X or 0)
 
-        // End the simulation
+     
         #20 $finish;
     end
 
-    // 5. Monitor the outputs in the console
+   
     initial begin
         $monitor("Time: %0t | Reset: %b | Load_En: %b | Instr_In: %h | Read_Addr: %d | Instr_Out: %h", 
                  $time, reset, load_en, instr_in, read_addr, instr_out);
