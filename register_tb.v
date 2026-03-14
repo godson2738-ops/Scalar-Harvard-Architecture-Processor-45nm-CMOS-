@@ -48,7 +48,6 @@ initial begin
         @(negedge clk);
         write_en = 0;          // Turn off writing
 
-        // --- READ PHASE ---
         
         
         #10 read_inaddr = 5'd5;  // Should output AA
@@ -56,11 +55,10 @@ initial begin
         #10 read_inaddr = 5'd31; // Should output CC
         #10 read_inaddr = 5'd0;  // Uninitialized register (will output XX)
 
-        // End the simulation
         #20 $finish;
     end
 
-    // 5. Monitor the outputs in the console
+ 
     initial begin
         $monitor("Time: %0t | Write_En: %b | W_Addr: %2d | Data_In: %h || R_Addr: %2d | Data_Out: %h", 
                  $time, write_en, write_inaddr, data_in, read_inaddr, data_out);
